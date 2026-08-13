@@ -6,6 +6,7 @@ build-backend = "hatchling.build"
 name = "jepa-arkit"
 version = "0.1.0"
 description = "Auditable JEPA and direct-regression research stack for ARKit facial motion"
+license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
 dependencies = [
