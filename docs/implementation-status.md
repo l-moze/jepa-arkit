@@ -9,7 +9,7 @@ Updated: 2026-08-13
   round-trip checks, and explicit MediaPipe -> canonical -> UE boundary.
 - D0A/D0B manifest audit: split leakage, source/identity/withdrawal overlap, motion archive
   validation, quality fields, rights ancestry, file fingerprints, and sample-addressable withdrawal.
-- Dataset catalog generated from `数据集目录可补充.md`; 14 candidates are classified by role and
+- Dataset catalog generated from `docs/dataset-catalog-notes.md`; 14 candidates are classified by role and
   every unverified source has explicit blockers.
 - Official evidence snapshots for VOCASET, MMHead, and RAVDESS. All three are research-only under
   the observed terms; none is a product-track candidate.
@@ -86,3 +86,4 @@ results or product checkpoints.
   `regional_temperature=0.75` and `head_temperature=0.5` as conservative pilot defaults.
 - E10 remains a representation result, not a deployable audio model.
 - E11 is not promoted until a pure-audio, multi-seed result clears the preregistered gate.
+

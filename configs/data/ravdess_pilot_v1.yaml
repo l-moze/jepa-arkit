@@ -1,0 +1,6 @@
+release_id: ravdess_mediapipe_pilot_v1
+gate: D0P
+track: research
+manifest: ../../data/real/ravdess_pilot_v1/manifest.jsonl
+canonical_schema: ../contracts/canonical_arkit_v1.json
+rights_registry: ravdess_rights_registry.json

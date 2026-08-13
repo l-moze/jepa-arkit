@@ -1,0 +1,191 @@
+catalog_version: 1
+source_document: ../../docs/dataset-catalog-notes.md
+datasets:
+  - dataset_id: ravdess
+    name: RAVDESS Audio-Visual Speech
+    source_url: https://zenodo.org/records/1188976
+    modalities: [audio, video, actor_identity, emotion]
+    role: silver_motion_supervision
+    access: open_download
+    stated_license: cc_by_nc_sa_4_0
+    evidence_status: verified
+    evidence_path: ../../docs/evidence/datasets/ravdess-license-2026-08-13.md
+    evidence_hash: ade7d424b6e76bce456bdc8e20b8bdb47ffc422d7cf10b70e6e02c0c8505f573
+    research_candidate: true
+    product_candidate: false
+    priority: 1
+    blockers: [solve_full_release_to_canonical, pass_e00_quality_gate]
+
+  - dataset_id: vocaset
+    name: VOCASET
+    source_url: https://voca.is.tue.mpg.de/
+    modalities: [audio, registered_3d_mesh]
+    role: gold_motion_anchor
+    access: application
+    stated_license: research_only
+    evidence_status: verified
+    evidence_path: ../../docs/evidence/datasets/vocaset-license-2026-08-13.md
+    evidence_hash: 7a1ab7dc7dd439176b474e3571c9430afb41a40739210e06e491f219bfc255ba
+    research_candidate: true
+    product_candidate: false
+    priority: 1
+    blockers: [approve_application, download_dataset, define_mesh_to_canonical_solver]
+
+  - dataset_id: biwi_3d_audio_visual
+    name: BIWI B3D(AC)2
+    source_url: https://data.vision.ee.ethz.ch/cvl/gfanelli/kinect_head_pose_db.tgz
+    modalities: [audio, 3d_face_motion]
+    role: gold_motion_anchor
+    access: broken_or_mirror
+    stated_license: unknown
+    evidence_status: verified
+    evidence_path: ../../docs/evidence/datasets/mmhead-license-2026-08-13.md
+    evidence_hash: 2966466f11d30fe4e29f45f2a26f02d2f9e42c4fc6c6e0815acd8fe7d9ec1ae4
+    research_candidate: true
+    product_candidate: false
+    priority: 2
+    blockers: [identify_canonical_dataset_page, save_official_license, verify_mirror_integrity]
+
+  - dataset_id: 3dmead
+    name: 3DMEAD
+    source_url: https://github.com/wangxuanx/Face-Diffusion-Model
+    modalities: [audio, flame_parameters, emotion]
+    role: silver_motion_supervision
+    access: project_link
+    stated_license: unknown_derived_from_mead
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 1
+    blockers: [verify_mead_license, verify_derived_release_terms, define_flame_to_canonical_solver]
+
+  - dataset_id: nvidia_audio2face_3d_sample
+    name: NVIDIA Audio2Face-3D Sample Dataset
+    source_url: https://huggingface.co/datasets/nvidia/Audio2Face-3D-Dataset-v1.0.0-claire
+    modalities: [audio, blendshape, geometry_cache]
+    role: interface_demo_only
+    access: gated_download
+    stated_license: nvidia_sample_data_demo_only
+    evidence_status: unverified
+    research_candidate: false
+    product_candidate: false
+    priority: 3
+    blockers: [save_current_license, legal_review, prohibit_training_unless_explicitly_allowed]
+
+  - dataset_id: 3d_cavfa
+    name: 3D-CAVFA
+    source_url: https://github.com/X-niper/UniTalker
+    modalities: [audio, 3d_face_motion, chinese_speech]
+    role: language_disjoint_motion_test
+    access: project_link
+    stated_license: unknown
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 2
+    blockers: [locate_release, save_official_license, verify_speaker_consent]
+
+  - dataset_id: unitalker_released
+    name: UniTalker Released Dataset
+    source_url: https://drive.google.com/file/d/1Un7TB0Z5A1CG6bgeqKlhnSOECFN-C6KK/view
+    modalities: [audio, heterogeneous_3d_face_motion]
+    role: research_aggregation
+    access: direct_link
+    stated_license: inherited_per_source
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 2
+    blockers: [enumerate_all_upstream_datasets, verify_each_upstream_license, preserve_source_ids]
+
+  - dataset_id: mmhead
+    name: MMHead
+    source_url: https://huggingface.co/datasets/Human-X/MMHead
+    modalities: [audio, flame_parameters, text_annotations]
+    role: silver_motion_supervision
+    access: gated_download
+    stated_license: unknown
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 1
+    blockers: [accept_gated_terms, download_dataset, define_flame_to_canonical_solver]
+
+  - dataset_id: diffposetalk_tfhp
+    name: DiffPoseTalk TFHP
+    source_url: https://diffposetalk.github.io/
+    modalities: [audio, video, 3dmm_parameters]
+    role: wild_robustness_test
+    access: project_link
+    stated_license: unknown
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 2
+    blockers: [save_dataset_terms, verify_source_video_rights, define_3dmm_to_canonical_solver]
+
+  - dataset_id: emovoca
+    name: EmoVOCA Synthetic
+    source_url: https://voca.is.tue.mpg.de/
+    modalities: [audio, synthetic_3d_face_motion, emotion]
+    role: conditional_research_extension
+    access: derived_requires_sources
+    stated_license: inherited_from_vocaset_and_florence4d
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 3
+    blockers: [verify_both_source_licenses, verify_derivative_rights, record_generation_pipeline]
+
+  - dataset_id: florence_4d
+    name: Florence 4D Facial Expression Dataset
+    source_url: null
+    modalities: [4d_face_expression]
+    role: expression_reference
+    access: unknown
+    stated_license: unknown
+    evidence_status: unverified
+    research_candidate: false
+    product_candidate: false
+    priority: 3
+    blockers: [identify_authoritative_source, save_official_license, verify_audio_presence]
+
+  - dataset_id: voxceleb_1_2
+    name: VoxCeleb 1 and 2
+    source_url: https://www.robots.ox.ac.uk/~vgg/data/voxceleb/
+    modalities: [audio, video, speaker_identity]
+    role: audio_visual_pretraining_or_robustness
+    access: registration
+    stated_license: cc_by_4_claim_requires_verification
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 3
+    blockers: [save_official_terms, verify_source_media_terms, no_motion_supervision_without_solver]
+
+  - dataset_id: faceforensics_pp
+    name: FaceForensics++
+    source_url: https://github.com/ondyari/FaceForensics
+    modalities: [video, manipulated_video]
+    role: solver_robustness_negative_set
+    access: application
+    stated_license: unknown
+    evidence_status: unverified
+    research_candidate: false
+    product_candidate: false
+    priority: 4
+    blockers: [save_official_terms, justify_relevance, prohibit_motion_training_by_default]
+
+  - dataset_id: avspeech
+    name: AVSpeech
+    source_url: https://looking-to-listen.github.io/avspeech/
+    modalities: [audio, video]
+    role: audio_visual_pretraining_or_robustness
+    access: metadata_plus_source_platform
+    stated_license: source_platform_terms_require_verification
+    evidence_status: unverified
+    research_candidate: true
+    product_candidate: false
+    priority: 4
+    blockers: [save_metadata_terms, verify_each_source_media_right, no_motion_supervision_without_solver]
+

@@ -1,0 +1,14 @@
+{
+  "profiles": [
+    {
+      "profile_id": "ravdess_cc_by_nc_sa_4_0_research_v1",
+      "research_allowed": true,
+      "product_training_allowed": false,
+      "derivatives_allowed": true,
+      "public_benchmark_allowed": true,
+      "status": "verified",
+      "evidence_path": "../../docs/evidence/datasets/ravdess-license-2026-08-13.md",
+      "evidence_hash": "ade7d424b6e76bce456bdc8e20b8bdb47ffc422d7cf10b70e6e02c0c8505f573"
+    }
+  ]
+}

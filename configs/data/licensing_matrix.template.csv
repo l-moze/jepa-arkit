@@ -1,0 +1,3 @@
+source_id,evidence_path,evidence_hash,research_allowed,product_training_allowed,derivatives_allowed,public_benchmark_allowed,status,reviewer,review_date,notes
+example_source,replace-me,replace-me,false,false,false,false,unverified,unassigned,,Unverified entries block both tracks
+

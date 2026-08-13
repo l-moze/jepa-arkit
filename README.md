@@ -42,3 +42,22 @@ uv run pytest
 The 2.44 GiB UniTalker release candidate is also downloaded and CRC-audited, but it remains in
 quarantine because the archive has no umbrella training license and several upstream sources are
 gated or research-only. See `docs/implementation-status.md` for the exact remaining gates.
+
+## Repository layout
+
+```
+configs/        # YAML experiment configs (configs/experiments) + JSON contracts (configs/contracts)
+docs/           # research plan, implementation status, dataset guide, top-venue survey, evidence, sessions
+src/jepa_arkit/ # package source: models, training, data pipeline, solver, streaming, features
+tests/          # pytest suite
+data/           # local-only data store (gitignored except data/README.md)
+runs/           # local training outputs (gitignored)
+artifacts/      # local reports and exported results (gitignored)
+```
+
+Key documents:
+
+- [docs/jepa-arkit-research-plan.md](docs/jepa-arkit-research-plan.md) - research plan, gates, and dual-track governance
+- [docs/implementation-status.md](docs/implementation-status.md) - current milestone and gate status
+- [docs/dataset-download-guide.md](docs/dataset-download-guide.md) - how to re-fetch all datasets
+- [docs/top-venue-survey-2022-2026.md](docs/top-venue-survey-2022-2026.md) - CVPR/ICCV/ECCV landscape survey

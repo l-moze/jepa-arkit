@@ -1,0 +1,7 @@
+release_id: synthetic_candidate_v1
+gate: D0A
+track: research
+manifest: ../../data/demo/manifest.jsonl
+canonical_schema: ../contracts/canonical_arkit_v1.json
+rights_registry: ../../data/demo/rights_registry.json
+
