@@ -1,0 +1,41 @@
+pilot_non_comparable: true
+track: research
+device: cuda
+seed: 20260813
+paths:
+  manifest: ../../data/real/ravdess_pilot_v1/manifest.jsonl
+  audit_report: ../../artifacts/d0p_ravdess_pilot_v1_audit.json
+  canonical_schema: ../contracts/canonical_arkit_v1.json
+  feature_store: ../../data/real/features/wavlm_base_fp16_ravdess_v2
+  normalization: ../../data/real/ravdess_pilot_v1/motion_normalization.json
+  motion_jepa_checkpoint: ../../runs/e10_motion_jepa_ravdess_v1/best_checkpoint.pt
+  output_dir: ../../runs/e11_audio_motion_jepa_audio_only_pretrained
+model:
+  model_dim: 128
+  encoder_layers: 3
+  predictor_layers: 2
+  heads: 4
+  dropout: 0.0
+training:
+  batch_size: 4
+  frames: 72
+  steps: 600
+  learning_rate: 0.0002
+  weight_decay: 0.01
+  history_mode: none
+  mask_ratio: 0.5
+  minimum_span: 3
+  maximum_span: 15
+  horizon_frames: 15
+  decode_weight: 0.5
+  variance_weight: 0.1
+  covariance_weight: 0.01
+  ema_momentum_start: 0.99
+  ema_momentum_end: 0.999
+  gradient_clip: 1.0
+  min_identities: 4
+  max_identity_share: 0.3
+  workers: 0
+  amp: true
+  validation_interval: 200
+  patience_evaluations: 2

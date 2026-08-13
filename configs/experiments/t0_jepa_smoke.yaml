@@ -1,0 +1,24 @@
+track: research
+data_release_id: synthetic_candidate_v1
+canonical_schema: ../contracts/canonical_arkit_v1.json
+output_dir: runs/t0_jepa_smoke
+device: auto
+seed: 20260812
+model:
+  model_dim: 64
+  encoder_layers: 2
+  predictor_layers: 1
+  heads: 4
+  dropout: 0.0
+training:
+  batch_size: 4
+  frames: 24
+  steps: 40
+  learning_rate: 0.001
+  mask_ratio: 0.55
+  mask_mode: random_token
+  horizon_frames: 6
+  ema_momentum: 0.996
+  min_loss_reduction: 0.5
+  min_effective_rank_ratio: 0.25
+  max_low_variance_fraction: 0.1

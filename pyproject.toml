@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jepa-arkit"
+version = "0.1.0"
+description = "Auditable JEPA and direct-regression research stack for ARKit facial motion"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "numpy>=2.1,<3",
+  "pyyaml>=6.0.2,<7",
+  "torch>=2.7,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9",
+  "ruff>=0.9,<1",
+]
+solver = [
+  "mediapipe>=0.10.21,<0.11",
+  "opencv-python-headless>=4.11,<5",
+]
+features = [
+  "transformers>=4.53,<6",
+]
+
+[project.scripts]
+jepa-arkit = "jepa_arkit.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jepa_arkit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu132", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true

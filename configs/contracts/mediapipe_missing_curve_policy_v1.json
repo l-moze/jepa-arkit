@@ -1,0 +1,11 @@
+{
+  "policy_id": "mediapipe_face_landmarker_missing_curves_v1",
+  "solver": "MediaPipe Face Landmarker",
+  "allowed_missing_curves": {
+    "tongueOut": {
+      "fill": "zero",
+      "supervision_weight": 0.0,
+      "reason": "MediaPipe Face Landmarker does not expose an ARKit tongueOut blendshape"
+    }
+  }
+}

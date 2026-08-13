@@ -1,0 +1,30 @@
+track: research
+device: auto
+seed: 20260812
+paths:
+  manifest: ../../data/real/release_v1/manifest.jsonl
+  audit_report: ../../artifacts/d0b_release_v1_audit.json
+  canonical_schema: ../contracts/canonical_arkit_v1.json
+  feature_store: ../../data/real/features/wavlm_base_fp16_v1
+  output_dir: ../../runs/e01_direct_v1
+  resume_checkpoint: null
+model:
+  model_dim: 256
+  layers: 6
+  heads: 8
+  dropout: 0.1
+  max_frames: 120
+training:
+  batch_size: 8
+  frames: 120
+  steps: 1000
+  learning_rate: 0.0002
+  weight_decay: 0.01
+  velocity_weight: 0.5
+  acceleration_weight: 0.1
+  gradient_clip: 1.0
+  min_identities: 4
+  max_identity_share: 0.3
+  workers: 0
+  amp: true
+

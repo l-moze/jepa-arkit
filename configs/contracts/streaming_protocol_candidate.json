@@ -1,0 +1,14 @@
+{
+  "protocol_id": "streaming_candidate_v1",
+  "sample_rate": 16000,
+  "output_fps": 30,
+  "chunk_ms": 200,
+  "lookahead_ms": 80,
+  "overlap_ms": 40,
+  "history_ms": 1000,
+  "state_limit_frames": 120,
+  "model_context_alignment": "right_align_valid_context_left_neutral_pad",
+  "timestamp_origin": "first_audio_sample_zero",
+  "tail_flush": "pad_audio_then_emit_until_last_real_timestamp",
+  "interpolation_owner": "ue"
+}

@@ -1,0 +1,23 @@
+track: research
+data_release_id: synthetic_candidate_v1
+feature_release_id: synthetic_audio_v1
+output_dir: runs/t0_direct_smoke
+device: auto
+seed: 20260812
+model:
+  audio_dim: 16
+  motion_dim: 59
+  model_dim: 64
+  layers: 2
+  heads: 4
+  dropout: 0.0
+  max_frames: 64
+training:
+  batch_size: 4
+  frames: 24
+  steps: 40
+  learning_rate: 0.001
+  velocity_weight: 0.2
+  min_loss_reduction: 0.5
+  min_shuffle_ratio: 1.1
+  min_silence_ratio: 1.1

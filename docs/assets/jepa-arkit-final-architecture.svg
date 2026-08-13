@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">JEPA-ARKit 推荐最终架构</title>
+  <desc id="desc">音频、过去动作和风格控制进入因果潜变量预测器，分别生成确定性嘴部曲线和随机上半脸残差，最终输出 ARKit 或 MetaHuman 曲线并接入 Unreal Engine。</desc>
+
+  <defs>
+    <marker id="arrow-dark" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#263238"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#0e7c86"/>
+    </marker>
+    <style>
+      .title { font: 700 34px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #17202a; }
+      .subtitle { font: 400 18px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #52616b; }
+      .section { font: 700 15px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #68757d; }
+      .card-title { font: 700 21px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #17202a; }
+      .card-body { font: 400 16px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #52616b; }
+      .card-body-dark { font: 400 16px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #dfe7e9; }
+      .card-title-dark { font: 700 22px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #ffffff; }
+      .pill { font: 700 14px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; }
+      .note-title { font: 700 18px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #17202a; }
+      .note-body { font: 400 16px Inter, "Microsoft YaHei", "PingFang SC", sans-serif; fill: #42535b; }
+      .connector { fill: none; stroke: #263238; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow-dark); }
+      .connector-teal { fill: none; stroke: #0e7c86; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow-teal); }
+      .boundary { fill: none; stroke: #0e7c86; stroke-width: 2; stroke-dasharray: 9 8; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f7f8f6"/>
+  <rect x="48" y="42" width="1504" height="816" rx="8" fill="#ffffff" stroke="#d9e0e2" stroke-width="2"/>
+
+  <text x="92" y="102" class="title">JEPA-ARKit 推荐最终架构</text>
+  <text x="92" y="137" class="subtitle">确定性口型保证同步，随机残差负责弱音频相关动作，JEPA 约束运动状态与时序一致性</text>
+
+  <text x="92" y="196" class="section">输入与条件</text>
+  <text x="525" y="196" class="section">潜空间动力学</text>
+  <text x="960" y="196" class="section">运动生成</text>
+  <text x="1304" y="196" class="section">运行时输出</text>
+
+  <!-- Input cards -->
+  <rect x="92" y="228" width="320" height="112" rx="8" fill="#eef6f7" stroke="#77aeb4" stroke-width="2"/>
+  <circle cx="126" cy="265" r="14" fill="#0e7c86"/>
+  <path d="M120 265 h12 M126 259 v12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="154" y="271" class="card-title">音频</text>
+  <text x="118" y="309" class="card-body">语音编码器 · 音素 · 韵律</text>
+
+  <rect x="92" y="380" width="320" height="112" rx="8" fill="#f4f2fa" stroke="#9485b8" stroke-width="2"/>
+  <circle cx="126" cy="417" r="14" fill="#6f5a9b"/>
+  <path d="M118 417 h16 M122 412 l-4 5 4 5 M130 412 l4 5-4 5" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="154" y="423" class="card-title">过去动作</text>
+  <text x="118" y="461" class="card-body">历史曲线 · 动作上下文</text>
+
+  <rect x="92" y="532" width="320" height="112" rx="8" fill="#fbf5e8" stroke="#cba552" stroke-width="2"/>
+  <circle cx="126" cy="569" r="14" fill="#c68a18"/>
+  <path d="M120 569 l4 4 8-9" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="154" y="575" class="card-title">可控条件</text>
+  <text x="118" y="613" class="card-body">风格 · 情绪 · 视线目标</text>
+
+  <!-- JEPA boundary -->
+  <rect x="490" y="214" width="390" height="464" rx="8" class="boundary"/>
+  <rect x="518" y="226" width="230" height="30" rx="6" fill="#ffffff"/>
+  <text x="532" y="247" class="pill" fill="#0e7c86">JEPA：运动表征与一致性先验</text>
+
+  <rect x="530" y="316" width="310" height="112" rx="8" fill="#edf6f3" stroke="#5f9b82" stroke-width="2"/>
+  <text x="685" y="358" text-anchor="middle" class="card-title">Motion-JEPA</text>
+  <text x="685" y="390" text-anchor="middle" class="card-body">Context Encoder</text>
+
+  <rect x="530" y="484" width="310" height="128" rx="8" fill="#172f35" stroke="#0e7c86" stroke-width="3"/>
+  <text x="685" y="528" text-anchor="middle" class="card-title-dark">因果潜变量预测器</text>
+  <text x="685" y="562" text-anchor="middle" class="card-body-dark">Audio + Past Motion + Controls</text>
+  <text x="685" y="590" text-anchor="middle" class="card-body-dark">→ Future Motion State</text>
+
+  <!-- Input connectors -->
+  <path d="M412 284 H468 V548 H520" class="connector"/>
+  <path d="M412 436 H468 V372 H520" class="connector-teal"/>
+  <path d="M412 588 H468 V566 H520" class="connector"/>
+  <path d="M685 428 V474" class="connector-teal"/>
+
+  <!-- Motion heads -->
+  <rect x="938" y="276" width="300" height="132" rx="8" fill="#edf7ee" stroke="#79a780" stroke-width="2"/>
+  <rect x="958" y="296" width="92" height="27" rx="6" fill="#4e8a5b"/>
+  <text x="1004" y="315" text-anchor="middle" class="pill" fill="#ffffff">确定性</text>
+  <text x="958" y="356" class="card-title">嘴唇 / 下颌曲线头</text>
+  <text x="958" y="386" class="card-body">同步、稳定、低延迟</text>
+
+  <rect x="938" y="470" width="300" height="148" rx="8" fill="#fdf0ed" stroke="#d98779" stroke-width="2"/>
+  <rect x="958" y="490" width="92" height="27" rx="6" fill="#d65a4a"/>
+  <text x="1004" y="509" text-anchor="middle" class="pill" fill="#ffffff">随机残差</text>
+  <text x="958" y="550" class="card-title">上半脸 / 视线 / 头动</text>
+  <text x="958" y="580" class="card-body">Diffusion · Flow · Latent Variable</text>
+
+  <path d="M850 548 H902 V342 H928" class="connector"/>
+  <path d="M850 548 H928" class="connector"/>
+
+  <!-- Composition and runtime -->
+  <rect x="1300" y="308" width="220" height="184" rx="8" fill="#f2f4f5" stroke="#8b989e" stroke-width="2"/>
+  <text x="1410" y="352" text-anchor="middle" class="card-title">动作合成与约束</text>
+  <text x="1410" y="386" text-anchor="middle" class="card-body">ARKit / MetaHuman 曲线</text>
+  <text x="1410" y="416" text-anchor="middle" class="card-body">头部 SE(3)</text>
+  <text x="1410" y="456" text-anchor="middle" class="pill" fill="#52616b">范围 · 同步 · Rig 合法性</text>
+
+  <rect x="1300" y="536" width="220" height="132" rx="8" fill="#25343a" stroke="#25343a" stroke-width="2"/>
+  <text x="1410" y="578" text-anchor="middle" class="card-title-dark">Unreal Engine</text>
+  <text x="1410" y="611" text-anchor="middle" class="card-body-dark">Live Link · AnimBP</text>
+  <text x="1410" y="640" text-anchor="middle" class="card-body-dark">Control Rig</text>
+
+  <path d="M1238 342 H1290" class="connector"/>
+  <path d="M1238 544 H1268 V444 H1290" class="connector"/>
+  <path d="M1410 492 V526" class="connector"/>
+
+  <!-- Principle note -->
+  <rect x="92" y="722" width="1428" height="92" rx="8" fill="#fff8e8" stroke="#d5b261" stroke-width="2"/>
+  <rect x="112" y="744" width="94" height="34" rx="6" fill="#c68a18"/>
+  <text x="159" y="767" text-anchor="middle" class="pill" fill="#ffffff">核心原则</text>
+  <text x="230" y="758" class="note-title">JEPA 负责运动表征和一致性先验</text>
+  <text x="230" y="788" class="note-body">它不是 UE 输出协议，也不能单独解决音频到完整面部动作的一对多生成问题。</text>
+</svg>
