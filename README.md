@@ -61,3 +61,10 @@ Key documents:
 - [docs/implementation-status.md](docs/implementation-status.md) - current milestone and gate status
 - [docs/dataset-download-guide.md](docs/dataset-download-guide.md) - how to re-fetch all datasets
 - [docs/top-venue-survey-2022-2026.md](docs/top-venue-survey-2022-2026.md) - CVPR/ICCV/ECCV landscape survey
+
+## License
+
+Code and configuration are released under the MIT License (see [LICENSE](LICENSE)).
+Datasets are **not** covered: RAVDESS is CC BY-NC-SA 4.0 and all derived data is
+research-only; see [docs/dataset-download-guide.md](docs/dataset-download-guide.md)
+for per-dataset terms.

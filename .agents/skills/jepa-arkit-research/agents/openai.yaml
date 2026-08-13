@@ -1,4 +1,0 @@
-interface:
-  display_name: "JEPA ARKit Research"
-  short_description: "Design and validate JEPA-to-ARKit experiments"
-  default_prompt: "Use $jepa-arkit-research to design a reproducible JEPA-to-ARKit experiment."

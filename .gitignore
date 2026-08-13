@@ -11,3 +11,7 @@ runs/
 artifacts/
 *.pt
 *.pth
+
+# Local agent/tooling configuration (not part of the public repo)
+.agents/
+.codex/
