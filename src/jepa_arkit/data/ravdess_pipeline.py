@@ -254,7 +254,9 @@ def _quaternion_multiply(left: np.ndarray, right: np.ndarray) -> np.ndarray:
     )
 
 
-def _relative_head(quaternion: np.ndarray, translation: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+def _relative_head(
+    quaternion: np.ndarray, translation: np.ndarray
+) -> tuple[np.ndarray, np.ndarray]:
     inverse_start = _quaternion_conjugate(quaternion[0])
     relative_rotation = _quaternion_multiply(
         np.broadcast_to(inverse_start, quaternion.shape), quaternion

@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from jepa_arkit.data.manifest import ManifestRecord, load_manifest
+from jepa_arkit.data.manifest import load_manifest
 from jepa_arkit.io import dump_jsonl, stable_hash
 
 
@@ -35,7 +35,9 @@ def plan_withdrawal(
         rows.append(row)
     dump_jsonl(output_manifest, rows)
     removed_ids = {record.clip_id for record in removed}
-    shards = sorted({feature_index[clip] for clip in removed_ids if feature_index and clip in feature_index})
+    shards = sorted(
+        {feature_index[clip] for clip in removed_ids if feature_index and clip in feature_index}
+    )
     checkpoints = sorted(
         checkpoint
         for checkpoint, ancestry in (checkpoint_ancestry or {}).items()

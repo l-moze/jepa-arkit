@@ -37,7 +37,7 @@ class AuditReport:
         }
 
     @classmethod
-    def from_dict(cls, value: dict[str, object]) -> "AuditReport":
+    def from_dict(cls, value: dict[str, object]) -> AuditReport:
         return cls(
             gate=str(value["gate"]),
             passed=bool(value["passed"]),
@@ -85,13 +85,16 @@ def _distribution_issues(records: list[ManifestRecord]) -> list[AuditIssue]:
                     f"{field}={value} occupies {share:.1%} of training records",
                 )
             )
-    validation_identities = {record.face_identity_id for record in records if record.split == "validation"}
+    validation_identities = {
+        record.face_identity_id for record in records if record.split == "validation"
+    }
     if len(validation_identities) < 5 and not all(record.synthetic for record in records):
         issues.append(
             AuditIssue(
                 "error",
                 "validation_identity_count",
-                f"Validation contains {len(validation_identities)} identities; at least 5 are required",
+                f"Validation contains {len(validation_identities)} identities; "
+                "at least 5 are required",
             )
         )
     return issues
@@ -116,11 +119,17 @@ def audit_release(config_path: str | Path, validate_files: bool = True) -> Audit
     pipelines = {record.preprocessing_pipeline for record in records}
     label_versions = {record.motion_label_version for record in records}
     if gate == "D0B" and len(pipelines) != 1:
-        issues.append(AuditIssue("error", "mixed_preprocessing", "D0B release must freeze one pipeline"))
+        issues.append(
+            AuditIssue("error", "mixed_preprocessing", "D0B release must freeze one pipeline")
+        )
     if gate == "D0B" and len(label_versions) != 1:
-        issues.append(AuditIssue("error", "mixed_label_version", "D0B release must freeze one label"))
+        issues.append(
+            AuditIssue("error", "mixed_label_version", "D0B release must freeze one label")
+        )
     if track is Track.PRODUCT and any(record.synthetic for record in records):
-        issues.append(AuditIssue("error", "synthetic_product", "Synthetic records cannot enter product"))
+        issues.append(
+            AuditIssue("error", "synthetic_product", "Synthetic records cannot enter product")
+        )
     for record in records:
         profile = registry.get(record.rights_profile_id)
         if profile is None:
@@ -142,7 +151,9 @@ def audit_release(config_path: str | Path, validate_files: bool = True) -> Audit
             if not audio_path.is_file():
                 issues.append(AuditIssue("error", "missing_audio", str(audio_path), record.clip_id))
             if not motion_path.is_file():
-                issues.append(AuditIssue("error", "missing_motion", str(motion_path), record.clip_id))
+                issues.append(
+                    AuditIssue("error", "missing_motion", str(motion_path), record.clip_id)
+                )
             else:
                 try:
                     load_and_validate_motion(motion_path, schema)
@@ -170,7 +181,9 @@ def audit_release(config_path: str | Path, validate_files: bool = True) -> Audit
             }
             for record in records
         }
-    fingerprint = stable_hash([record.__dict__ | {"quality": record.quality.__dict__} for record in records])
+    fingerprint = stable_hash(
+        [record.__dict__ | {"quality": record.quality.__dict__} for record in records]
+    )
     return AuditReport(
         gate=gate,
         passed=not any(issue.severity == "error" for issue in issues),

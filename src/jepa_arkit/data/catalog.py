@@ -50,11 +50,15 @@ class DatasetCandidate:
         if self.evidence_status not in {"unverified", "verified", "rejected"}:
             raise ContractError(f"Invalid evidence status for {self.dataset_id}")
         if self.product_candidate and self.evidence_status != "verified":
-            raise ContractError(f"Unverified dataset cannot be a product candidate: {self.dataset_id}")
+            raise ContractError(
+                f"Unverified dataset cannot be a product candidate: {self.dataset_id}"
+            )
         if self.evidence_status == "verified" and not (self.evidence_path and self.evidence_hash):
             raise ContractError(f"Verified dataset needs evidence path and hash: {self.dataset_id}")
         if not self.modalities or not self.blockers and self.evidence_status == "unverified":
-            raise ContractError(f"Unverified dataset needs modalities and blockers: {self.dataset_id}")
+            raise ContractError(
+                f"Unverified dataset needs modalities and blockers: {self.dataset_id}"
+            )
 
 
 def audit_dataset_catalog(path: str | Path) -> dict[str, object]:

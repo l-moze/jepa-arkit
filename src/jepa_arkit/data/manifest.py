@@ -42,7 +42,7 @@ class ManifestRecord:
     synthetic: bool = False
 
     @classmethod
-    def from_mapping(cls, value: dict[str, Any]) -> "ManifestRecord":
+    def from_mapping(cls, value: dict[str, Any]) -> ManifestRecord:
         required = {
             "clip_id",
             "audio_path",
